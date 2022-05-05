@@ -7,12 +7,20 @@ function App() {
   const [totNum, setTotNum] = useState("");
   const [symbol, setSymbol] = useState("+");
 
-  const onClickAdd = () => {
-    setTotNum(Number(leftNum) + Number(rightNum));
+  const computeResult = () => {
+    if (symbol === "+") {
+      setTotNum(parseFloat(leftNum) + parseFloat(rightNum));
+    }
+    if (symbol === "-") {
+      setTotNum(parseFloat(leftNum) - parseFloat(rightNum));
+    }
+    if (symbol === "*") {
+      setTotNum(parseFloat(leftNum) * parseFloat(rightNum));
+    }
+    if (symbol === "÷") {
+      setTotNum(parseFloat(leftNum) / parseFloat(rightNum));
+    }
   };
-  // We need a state containing a number, symbol, another number.
-  // Function that add/substract/multiply/divide the first number with the second number
-  // Returns the result in the display panel answer
 
   return (
     <div className="calculator">
@@ -36,10 +44,10 @@ function App() {
       <div className="panel">
         <p>{symbol}</p>
         <div className="numbers">
-          <button onClick={""}>+</button>
-          <button>-</button>
-          <button>*</button>
-          <button>÷</button>
+          <button onClick={() => setSymbol("+")}>+</button>
+          <button onClick={() => setSymbol("-")}>-</button>
+          <button onClick={() => setSymbol("*")}>*</button>
+          <button onClick={() => setSymbol("÷")}>÷</button>
         </div>
       </div>
 
@@ -62,7 +70,7 @@ function App() {
       <div className="panel answer">
         <p>{totNum}</p>
         <div>
-          <button onClick={onClickAdd}>=</button>
+          <button onClick={() => computeResult()}>=</button>
         </div>
       </div>
     </div>
